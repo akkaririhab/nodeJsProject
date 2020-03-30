@@ -3,27 +3,27 @@ const validate = require('express-validation');
 const paramValidation = require('../../config/param-validation');
 const expressJwt = require('express-jwt');
 const config = require('../../config/config');
-const projectCtrl = require('./project.controller');
+const restaurantCtrl = require('./restaurant.controller');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.route('/')
-  /** GET /api/projects - Get list of projects */
-  .get(projectCtrl.list)
+  /** GET /api/projects - Get list of  */
+  .get(restaurantCtrl.list)
   /** POST /api/projects - Create new project */
-  .post(projectCtrl.create);
+  .post(restaurantCtrl.create);
 
-router.route('/:projectId')
-  /** GET /api/users/:userId - Get project */
-  .get(expressJwt({ secret: config.jwtSecret }), projectCtrl.get)
+router.route('/:restaurantId')
+ /* Get Restaurant */
+  .get(expressJwt({ secret: config.jwtSecret }), restaurantCtrl.get)
 
   /** PUT /api/projects/:projectId - Update project */
-  .put( projectCtrl.update)
+  .put( restaurantCtrl.update)
 
   /** DELETE /api/users/:userId - Delete user */
-  .delete(projectCtrl.remove);
+  .delete(restaurantCtrl.remove);
 
 /** Load user when API with userId route parameter is hit */
-router.param('projectId', projectCtrl.load);
+router.param('restaurantId', restaurantCtrl.load);
 
 module.exports = router;
